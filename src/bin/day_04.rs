@@ -13,12 +13,15 @@ fn read_input(input: &str) -> Vec<Vec<(i32, i32)>> {
 fn count_total_overlaps(rounds: Vec<Vec<(i32, i32)>>) -> i32 {
     let mut sum = 0;
     for round in rounds{
-        let diff = round[0].0 - round[1].0;
-        if diff == 0 { sum += 1;}
-        else if diff < 0 {
-            if round[0].1 - round[1].1 >= 0 { sum += 1;}
+        let starting_diff = round[0].0 - round[1].0;
+        let end_diff_elf_1_later = round[0].1 - round[1].1 >= 0;
+        let end_diff_elf_2_later = round[0].1 - round[1].1 <= 0;
+        match starting_diff{
+            0 => sum += 1,
+            i if i < 0 => if end_diff_elf_1_later { sum += 1;},
+            i if i > 0 => if end_diff_elf_2_later { sum += 1;}
+            _ => unreachable!("NAN")
         }
-        else if diff >0 && round[0].1 - round[1].1 <= 0 { sum += 1;}
     }
     sum
 }
@@ -26,11 +29,15 @@ fn count_any_overlap(rounds: Vec<Vec<(i32, i32)>>) -> i32 {
     let mut sum = 0;
     for round in rounds{
         let diff = round[0].0 - round[1].0;
-        if diff == 0 { sum += 1;}
-        else if diff < 0 {
-            if round[0].1 - round[1].0 >= 0 { sum += 1;}
+        let elf_1_end_overlaps_elf_2_start = round[0].1 - round[1].0 >= 0;
+        let elf_2_end_overlaps_elf_1_start = round[0].0 - round[1].1 <= 0;
+
+        match diff {
+            0 => sum += 1,
+            i if i < 0 => if elf_1_end_overlaps_elf_2_start { sum += 1},
+            i if i > 0 => if elf_2_end_overlaps_elf_1_start { sum += 1},
+            _ => unreachable!("NAN")
         }
-        else if diff > 0 && round[0].0 - round[1].1 <= 0 { sum += 1;}
     }
     sum
 }
@@ -63,7 +70,6 @@ mod p2 {
 mod day04_tests {
     use super::*;
     
-    const DAY_INPUT: &str = include_str!("../../inputs/day_04/input.txt");
     const SAMPLE: &str = include_str!("../../inputs/day_04/sample.txt");
     
 // 2-4,6-8
