@@ -20,18 +20,14 @@ fn overlaps(first: (i32, i32),second: (i32, i32)) -> bool {
 }
 
 fn count_total_overlaps(rounds: Vec<Vec<(i32, i32)>>) -> i32 {
-    let mut sum = 0;
-    for round in rounds{
-        if is_subset(round[0], round[1]) || is_subset(round[1], round[0]) { sum += 1}
-    }
-    sum
+    rounds.into_iter().filter(|round|{
+        is_subset(round[0], round[1]) || is_subset(round[1], round[0])
+    }).count() as i32
 }
 fn count_any_overlap(rounds: Vec<Vec<(i32, i32)>>) -> i32 {
-    let mut sum = 0;
-    for round in rounds{
-        if overlaps(round[0], round[1]) { sum+= 1}
-    }
-    sum
+    rounds.into_iter().filter(|round|{
+        overlaps(round[0], round[1])
+    }).count() as i32
 }
 
 
