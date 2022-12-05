@@ -1,9 +1,11 @@
-fn read_input(input: &str) -> &str {
-    ""
+fn parse_input(input: &str) -> Vec<&str> {
+    input.lines()
+        .collect()
 }
 
+
 fn main() {
-    let input = &read_input("../../inputs/DAY_INPUT");
+    let input = &parse_input("../../inputs/DAY_INPUT");
 }
 
 mod p1 {
@@ -32,22 +34,8 @@ mod day04_tests {
 
     #[test]
     #[ignore]
-    fn p1_input() {
-        let input = &read_input(DAY_INPUT);
-        assert_eq!(p1::solve(input), 0)
-    }
-
-    #[test]
-    #[ignore]
     fn p2_sample() {
         assert_eq!(p2::solve(SAMPLE), 0)
-    }
-
-    #[test]
-    #[ignore]
-    fn p2_input() {
-        let input = &read_input(DAY_INPUT);
-        assert_eq!(p2::solve(input), 0)
     }
 
 }
