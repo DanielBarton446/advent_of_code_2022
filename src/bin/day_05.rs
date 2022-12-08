@@ -19,9 +19,9 @@ fn parse_instructions(instructions: Vec<&str>) -> Vec<[usize; 3]> {
             let splits = line.split_whitespace().collect::<Vec<_>>();
             [
                 splits[1].parse::<usize>().unwrap(),
-                splits[3].parse::<usize>().unwrap(), // 0 indexed
+                splits[3].parse::<usize>().unwrap(), 
                 splits[5].parse::<usize>().unwrap(),
-            ] // 0 indexed
+            ] 
         })
         .collect::<Vec<[usize; 3]>>()
 }
@@ -124,7 +124,7 @@ mod day05_tests {
         let stacks = create_stacks(input.0);
         let expected_stack = vec![vec!['Z', 'N'], vec!['M', 'C', 'D'], vec!['P']];
         let instructions = parse_instructions(input.1);
-        let expected_instructions = vec![[1, 2, 1], [3, 1, 3], [2, 2, 1], [11, 1, 2]];
+        let expected_instructions = vec![[1, 2, 1], [3, 1, 3], [2, 2, 1], [1, 1, 2]];
         assert_eq!(stacks, expected_stack);
         assert_eq!(instructions, expected_instructions);
     }
