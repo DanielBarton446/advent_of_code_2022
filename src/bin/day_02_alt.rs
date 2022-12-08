@@ -1,10 +1,12 @@
 #![allow(dead_code, unused_variables)]
-fn read_input(input: &str) -> Vec<(char, char)>{
-    input.lines()
+fn read_input(input: &str) -> Vec<(char, char)> {
+    input
+        .lines()
         .map(|line| {
             let ln = line.as_bytes();
             (ln[0] as char, ln[2] as char)
-        }).collect()
+        })
+        .collect()
 }
 
 fn main() {
@@ -21,20 +23,20 @@ mod p1 {
 
 mod p2 {
     pub fn solve(input: &str) -> usize {
-       0 
+        0
     }
 }
 
 #[cfg(test)]
 mod day04_tests {
     use super::*;
-    
+
     const DAY_INPUT: &str = include_str!("../../inputs/day_02_alt/input.txt");
     const SAMPLE: &str = include_str!("../../inputs/day_02_alt/sample.txt");
 
     #[test]
     fn p1_sample() {
-        assert_eq!(p1::solve(SAMPLE), vec![('A', 'Y'),('B', 'X'),('C', 'Z')])
+        assert_eq!(p1::solve(SAMPLE), vec![('A', 'Y'), ('B', 'X'), ('C', 'Z')])
     }
 
     // #[test]
@@ -58,4 +60,3 @@ mod day04_tests {
     // }
     //
 }
-
