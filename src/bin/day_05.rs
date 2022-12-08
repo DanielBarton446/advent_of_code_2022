@@ -19,9 +19,9 @@ fn parse_instructions(instructions: Vec<&str>) -> Vec<[usize; 3]> {
             let splits = line.split_whitespace().collect::<Vec<_>>();
             [
                 splits[1].parse::<usize>().unwrap(),
-                splits[3].parse::<usize>().unwrap(), 
+                splits[3].parse::<usize>().unwrap(),
                 splits[5].parse::<usize>().unwrap(),
-            ] 
+            ]
         })
         .collect::<Vec<[usize; 3]>>()
 }
